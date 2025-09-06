@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TuneFind — music + id + lyrics</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div class="logo">TF</div>
+      <div>
+        <h1>TuneFind</h1>
+        <div class="small">Play local tracks, identify songs, fetch lyrics & LRC sync. Set your proxy URL below.</div>
+      </div>
+    </header>
+
+    <section class="grid">
+      <div>
+        <div class="card">
+          <div class="row">
+            <input id="fileInput" type="file" accept="audio/*" multiple />
+            <button id="recordBtn">Record & Identify (3s)</button>
+          </div>
+          <div id="playlist" class="playlist" style="margin-top:12px"></div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3>Identification</h3>
+          <div class="small">If your proxy is remote, paste the base URL (e.g. <code>https://my-proxy.example.com</code>), otherwise leave blank to use same origin.</div>
+          <input id="proxyUrl" placeholder="Proxy base URL (optional)" style="width:100%;margin-top:8px" />
+          <div id="idResult" class="small" style="margin-top:8px"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card">
+          <div>
+            <div id="nowTitle" style="font-weight:700">No track</div>
+            <div id="nowArtist" class="small muted">—</div>
+          </div>
+
+          <audio id="audio" preload="metadata"></audio>
+          <div class="controls">
+            <button id="playPause">Play</button>
+            <button id="prev">Prev</button>
+            <button id="next">Next</button>
+            <input id="seek" type="range" min="0" max="100" value="0" />
+            <span id="time" class="small">0:00 / 0:00</span>
+          </div>
+
+          <h4>Lyrics (synchronized)</h4>
+          <div class="small">Upload a `.lrc` file for perfect sync, or fetch raw lyrics from the proxy.</div>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <input id="lrcInput" type="file" accept=".lrc" />
+            <button id="fetchLyrics">Fetch lyrics from server</button>
+          </div>
+          <div id="lyrics" class="lyrics" style="margin-top:8px"></div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h4>Favorites</h4>
+          <div id="favorites" class="small" style="margin-top:8px"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="muted" style="margin-top:14px">Frontend: static (GitHub Pages). Deploy proxy where you can run Node (Render/Railway/Vercel).</footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
